@@ -54,7 +54,11 @@ func main(){
 		if err != nil {
 			fmt.Println("listen.Accept err=",err)
 		}
+		
 		//一旦建立连接成功，就启动一个协程和客户端保持通讯
 		go process1(conn)
+
 	}
 }
+
+

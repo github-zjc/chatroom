@@ -16,6 +16,7 @@ type Processor struct {
 
 func (this *Processor) serverProcessMes(mes *message.Message) (err error) {	
 
+	fmt.Println("mes=",mes)
 	switch mes.Type {
 		case message.LoginMesType :
 			//处理登录
@@ -30,6 +31,17 @@ func (this *Processor) serverProcessMes(mes *message.Message) (err error) {
 				Conn :this.Conn,
 			}
 			err = up.ServerProcessRegister(mes)
+		case message.NotifyUserStatusMesType :
+			//处理用户退出
+			up := &process.UserProcess{
+				Conn :this.Conn,
+			}
+			up.ServerProcessOff(mes)
+		case message.SmsMesType :
+			//创建一个SmsProcess实例完成转发群聊消息.
+			smsProcess := &process.SmsProcess{}
+			smsProcess.SendGroupMes(mes)
+
 		default :
 			fmt.Println("mes.Type 类型有误")
 	}
@@ -64,3 +76,4 @@ func (this *Processor) process2() (err error) {
 	
 		}
 }
+

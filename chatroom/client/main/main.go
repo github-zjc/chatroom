@@ -25,10 +25,10 @@ func main(){
 			fmt.Println("请输入用户密码：")
 			fmt.Scanf("%s\n",&Userpwd)
 			//定义一个userProcess结构体，完成登录的请求
-			us := &process.UserProcess{
+			up := &process.UserProcess{
 
 			}
-			err := us.Login(UserID,Userpwd)
+			err := up.Login(UserID,Userpwd)
 			if err != nil {
 				return
 			}
@@ -41,8 +41,8 @@ func main(){
 			fmt.Println("请输入用户的名字")
 			fmt.Scanf("%s\n",&UserName)
 			////定义一个userProcess结构体,完成注册的请求
-			us := &process.UserProcess{}
-			err := us.Register(UserID,Userpwd,UserName)
+			up := &process.UserProcess{}
+			err := up.Register(UserID,Userpwd,UserName)
 			if err != nil {
 				return
 			}

@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"github.com/garyburd/redigo/redis"
 	"encoding/json"
+	"go_code/chatroom/common/message"
 )
 
 //我们在服务器启动后，就初始化一个userDao实例，
@@ -76,13 +77,13 @@ func (this *UserDao) Login(userId int, userPwd string) (user *User, err error) {
 }
 
 
-func (this *UserDao) Register(user *User) (err error) {
+func (this *UserDao) Register(user *message.User) (err error) {
 
 	//先从UserDao 的连接池中取出一根连接
 	conn := this.pool.Get() 
 	defer conn.Close() 
 	_, err = this.getUserById(conn, user.UserId)
-	if err != nil {
+	if err == nil {
 		err = ERROR_USER_EXISTS
 		return 
 	}
