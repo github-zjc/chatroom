@@ -1,9 +1,6 @@
 # chatroom
-海量数据通讯系统
 
-#本项目在vsCode上编译
-
-1:使用前需要连接redis数据库，并开启redis-cli
+1:使用前需要连接redis数据库
 
 2:分别对server包和client包下的main进行go build
 例如：
